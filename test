@@ -1,0 +1,24 @@
+N=1000;
+A=1;
+r=linspace(0, A, N);
+v=normpdf(r, 0, 1);
+
+u=hank(v, N, A);
+
+figure;
+hold on;
+grid on;
+plot(r, v, 'g');
+plot(r, u, 'r');
+
+f=hank(u, N, A);
+plot(r, f, 'b');
+
+
+function res=hank(f, N, A)
+    r=linspace(0, A, N);
+    u=r.^(7/4).*f;
+    v=besselj(0, 2*pi*r).*(r.^(1/4));
+    r(1)=r(2);
+    res=conv(u, v, 'same')./(r.^(1/4));
+end
