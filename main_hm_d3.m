@@ -18,7 +18,7 @@ function main_hm_d3()
     w21=d21*normpdf(r, 0, sw21);
     w22=d22*normpdf(r, 0, sw22);
                 
-    al=0.8;
+    al=0.4;
     N1=0;
     N2=0;
     
@@ -47,8 +47,8 @@ function main_hm_d3()
             display(100*(i-1)+j);
         end
     end
-    dlmwrite('N1hmD3_08.txt', N1_ans);
-    dlmwrite('N2hmD3_08.txt', N2_ans);
+    dlmwrite('N1hmD3_04.txt', N1_ans);
+    dlmwrite('N2hmD3_04.txt', N2_ans);
     figure;
     hold on;
     grid on;
