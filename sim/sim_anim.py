@@ -7,10 +7,17 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as manimation
 
-FFMpegWriter = manimation.writers['ffmpeg']
-metadata = dict(title='Movie Test', artist='Matplotlib',
-                comment='Movie support!')
-mywriter = FFMpegWriter(fps=3, bitrate=5000, metadata=metadata)
+
+fig = plt.figure()
+ax = plt.axes(xlim=(-1, 1), ylim=(-1, 1))
+l1, = ax.plot([], [], 'rx')
+l2, = ax.plot([], [], 'bx')
+
+def init():
+    l1.set_data([], [])
+    l2.set_data([], [])
+    return l1, l2,
+
 
 def normpdf(x, mu, sigma):
     u = (x-mu)/abs(sigma)
@@ -27,10 +34,10 @@ b1=0.4
 b2=0.4
 d1=0.2
 d2=0.2
-d11=0.01 
-d12=0.01 
-d21=0.01 
-d22=0.01
+d11=0.05 
+d12=0.05 
+d21=0.05 
+d22=0.05
 sw11=0.1
 sw22=0.1
 sw12=0.1 
@@ -142,20 +149,20 @@ def step(x1, y1, x2, y2, death1, death2, b1, sm1, b2, sm2, d1, d2, d11, sw11, d1
     
     return x1, y1, x2, y2, death1, death2
 
+def animate(k):
+    global x1, y1, x2, y2, death1, death2, b1, sm1, b2, sm2, d1, d2, d11, sw11, d12, sw12, d21, sw21, d22, sw22 
+    x1, y1, x2, y2, death1, death2 = step(x1, y1, x2, y2, death1, death2, b1, sm1, b2, sm2, d1, d2, d11, sw11, d12, sw12, d21, sw21, d22, sw22)
+    print(len(x1), len(x2), k)
 
-fig = plt.figure()
-l1, = plt.plot([], [], 'rx')
-l2, = plt.plot([], [], 'bx')
+    l1.set_data(x1, y1)
+    l2.set_data(x2, y2)
 
-plt.xlim(-1, 1)
-plt.ylim(-1, 1)
+    return l1, l2,
 
-fr=30
-with mywriter.saving(fig, "st10-test.mp4", fr ):
-    for i in range(fr):
-        x1, y1, x2, y2, death1, death2 = step(x1, y1, x2, y2, death1, death2, b1, sm1, b2, sm2, d1, d2, d11, sw11, d12, sw12, d21, sw21, d22, sw22)
-        print(len(x1), len(x2), i)
-        l1.set_data(x1, y1)
-        l2.set_data(x2, y2)
-        mywriter.grab_frame()
+anim = manimation.FuncAnimation(fig, animate, init_func=init,
+                               frames=100, blit=True)
 
+anim.save('basic_animation_100_longlong_DD.mp4', fps=3, extra_args=['-vcodec', 'libx264'])
+
+
+#plt.show()
