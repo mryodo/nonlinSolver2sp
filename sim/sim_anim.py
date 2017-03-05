@@ -26,21 +26,21 @@ def normpdf(x, mu, sigma):
 
 
 A=1
-N=10000
+N=200
 
-sm1=0.04 
-sm2=0.06
-b1=0.4 
-b2=0.4
+sm1=0.4 
+sm2=0.6
+b1=0.3 
+b2=0.3
 d1=0.2
 d2=0.2
 d11=0.01 
 d12=0.01 
 d21=0.01 
 d22=0.01
-sw11=0.1
-sw22=0.1
-sw12=0.1 
+sw11=0.3
+sw22=0.15
+sw12=0.4 
 sw21=0.1
 
 x1, y1= np.random.uniform(-1, 1, (N, 2)).T
@@ -162,7 +162,7 @@ def animate(k):
 anim = manimation.FuncAnimation(fig, animate, init_func=init,
                                frames=50, blit=True)
 
-anim.save('basic_animation_10000_long_D.mp4', fps=3, extra_args=['-vcodec', 'libx264'])
+anim.save('basic_animation_FUN_long_D.mp4', fps=3, extra_args=['-vcodec', 'libx264'])
 
 
 #plt.show()
