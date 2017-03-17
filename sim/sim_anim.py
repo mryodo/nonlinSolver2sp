@@ -6,6 +6,7 @@ import matplotlib
 #matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.animation as manimation
+import psutil as psutil
 
 
 fig = plt.figure()
@@ -152,7 +153,7 @@ def step(x1, y1, x2, y2, death1, death2, b1, sm1, b2, sm2, d1, d2, d11, sw11, d1
 def animate(k):
     global x1, y1, x2, y2, death1, death2, b1, sm1, b2, sm2, d1, d2, d11, sw11, d12, sw12, d21, sw21, d22, sw22 
     x1, y1, x2, y2, death1, death2 = step(x1, y1, x2, y2, death1, death2, b1, sm1, b2, sm2, d1, d2, d11, sw11, d12, sw12, d21, sw21, d22, sw22)
-    print(len(x1), len(x2), k)
+    print(len(x1), len(x2), k, psutil.cpu_count())
 
     l1.set_data(x1, y1)
     l2.set_data(x2, y2)
