@@ -1,5 +1,5 @@
-N1=dlmread('N1cctoD2.txt');
-N2=dlmread('N2cctoD2.txt');
+N1=dlmread('N1hmD3_08.txt');
+N2=dlmread('N2hmD3_08.txt');
 
 N=100;
 
