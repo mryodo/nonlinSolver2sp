@@ -18,7 +18,7 @@ function main_ccto_d1()
     w21=d21*normpdf(r, 0, sw21);
     w22=d22*normpdf(r, 0, sw22);
     
-    al=0.4;
+    al=0.8;
     N1=0;
     N2=0;
     
@@ -44,8 +44,8 @@ function main_ccto_d1()
             display(150*(i-1)+j);
         end
     end
-    dlmwrite('N1cctoD1_04_d.txt', N1_ans);
-    dlmwrite('N2cctoD1_04_d.txt', N2_ans);
+    dlmwrite('N1cctoD1_08_d.txt', N1_ans);
+    dlmwrite('N2cctoD1_08_d.txt', N2_ans);
     figure;
     hold on;
     grid on;
