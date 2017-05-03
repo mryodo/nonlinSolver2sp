@@ -22,7 +22,7 @@ function main_ccto_d3()
     N1=0;
     N2=0;
     
-    d12=linspace(0, 0.001, 100);
+    d12=linspace(0, 0.0015, 100);
     sm2=linspace(0.001, 0.2, 100);
     
     N1_ans=zeros(length(d12), length(sm2));
@@ -44,8 +44,8 @@ function main_ccto_d3()
             display(100*(i-1)+j);
         end
     end
-    dlmwrite('N1cctoD3.txt', N1_ans);
-    dlmwrite('N2cctoD3.txt', N2_ans);
+    dlmwrite('N1cctoD3_04_d.txt', N1_ans);
+    dlmwrite('N2cctoD3_04_d.txt', N2_ans);
     figure;
     hold on;
     grid on;

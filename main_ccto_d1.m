@@ -18,12 +18,12 @@ function main_ccto_d1()
     w21=d21*normpdf(r, 0, sw21);
     w22=d22*normpdf(r, 0, sw22);
     
-    al=0.8;
+    al=0.4;
     N1=0;
     N2=0;
     
-    d12=linspace(0, 0.0015, 150);
-    sm2=linspace(0.00001, 0.2, 150);
+    d12=linspace(0, 0.0015, 100);
+    sm2=linspace(0.000001, 0.2, 100);
     
     N1_ans=zeros(length(d12), length(sm2));
     N2_ans=zeros(length(d12), length(sm2));
@@ -41,11 +41,11 @@ function main_ccto_d1()
             [N1, N2, ~, ~, ~, ~]=solver(N1, N2, D11, D12, D22, w11, w12, w21, w22, d11, d12(i), d21, d22, m1, m2, b1, b2, d1, d2, h, A, al, N, 1);
             N1_ans(i, j)=N1;
             N2_ans(i, j)=N2;
-            display(150*(i-1)+j);
+            display(100*(i-1)+j);
         end
     end
-    dlmwrite('N1cctoD1_08_d.txt', N1_ans);
-    dlmwrite('N2cctoD1_08_d.txt', N2_ans);
+    dlmwrite('N1cctoD1_04_d_test.txt', N1_ans);
+    dlmwrite('N2cctoD1_04_d_test.txt', N2_ans);
     figure;
     hold on;
     grid on;
