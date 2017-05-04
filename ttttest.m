@@ -8,4 +8,4 @@ sm2=linspace(0.00001, 0.2, 100);
     hold on;
     grid on;
     surf(sm2, d12, N1_ans);
-    %surf(sm2, d12, N2_ans);
+    surf(sm2, d12, N2_ans);
