@@ -25,6 +25,7 @@ function main_ccto_d1()
     d12=linspace(0, 0.0015, 100);
     sm2=linspace(0.000001, 0.2, 100);
     
+    
     N1_ans=zeros(length(d12), length(sm2));
     N2_ans=zeros(length(d12), length(sm2));
     for i=1:length(d12)
