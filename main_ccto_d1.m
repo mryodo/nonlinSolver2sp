@@ -22,15 +22,16 @@ function main_ccto_d1()
     N1=0;
     N2=0;
     
-    d12=linspace(0, 0.0015, 100);
-    sm2=linspace(0.000001, 0.2, 100);
+    d12=linspace(0, 0.0015, 1000);
+    %sm2=linspace(0.000001, 0.2, 100);
     
+    sm2=0.1;
     
-    N1_ans=zeros(length(d12), length(sm2));
-    N2_ans=zeros(length(d12), length(sm2));
+    N1_ans=zeros(length(d12), 1);
+    N2_ans=zeros(length(d12), 1);
     for i=1:length(d12)
-        for j=1:length(sm2)
-            m2=b2*normpdf(r, 0, sm2(j));
+        %for j=1:length(sm2)
+            m2=b2*normpdf(r, 0, sm2);
             w12=d12(i)*normpdf(r, 0, sw12);
             
             D11=zeros(1, N);
@@ -40,17 +41,17 @@ function main_ccto_d1()
             N2=0;
             
             [N1, N2, ~, ~, ~, ~]=solver(N1, N2, D11, D12, D22, w11, w12, w21, w22, d11, d12(i), d21, d22, m1, m2, b1, b2, d1, d2, h, A, al, N, 1);
-            N1_ans(i, j)=N1;
-            N2_ans(i, j)=N2;
-            display(100*(i-1)+j);
-        end
+            N1_ans(i)=N1;
+            N2_ans(i)=N2;
+            display(i);
+        %end
     end
-    dlmwrite('N1cctoD1_04_d_test.txt', N1_ans);
-    dlmwrite('N2cctoD1_04_d_test.txt', N2_ans);
+    dlmwrite('SHITN1cctoD1_04_d_test.txt', N1_ans);
+    dlmwrite('SHITN2cctoD1_04_d_test.txt', N2_ans);
     figure;
     hold on;
     grid on;
-    surf(d12, sm2, N1_ans);
-    surf(d12, sm2, N2_ans);
+    plot(d12, N1_ans);
+    plot(d12, N2_ans);
     
 end
