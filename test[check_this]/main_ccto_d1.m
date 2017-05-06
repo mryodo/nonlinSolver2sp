@@ -22,7 +22,7 @@ function main_ccto_d1()
     N1=0;
     N2=0;
     
-    d12=linspace(0, 0.0015, 1000);
+    d12=linspace(0.0009, 0.0012, 100);
     %sm2=linspace(0.000001, 0.2, 100);
     
     sm2=0.1;
@@ -46,8 +46,8 @@ function main_ccto_d1()
             display(i);
         %end
     end
-    dlmwrite('SHITN1cctoD1_04_d_test.txt', N1_ans);
-    dlmwrite('SHITN2cctoD1_04_d_test.txt', N2_ans);
+    dlmwrite('SHITN1cctoD1_04_d_test_2.txt', N1_ans);
+    dlmwrite('SHITN2cctoD1_04_d_test_2.txt', N2_ans);
     figure;
     hold on;
     grid on;
