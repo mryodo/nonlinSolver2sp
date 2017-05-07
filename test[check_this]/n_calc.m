@@ -8,5 +8,22 @@ function res=n_calc(D11, D12, D22, w11, w12, w21, w22, d11, d12, d21, d22, b1, b
     y22=y_calc(w22, D22, d22, h, N, A, dim);
    % res = [(b1-d1)/y11 0];
     right=[y11 y12; y21 y22];
-    res = linsolve(right, left);
+    if (rcond(right)<1e-12) || (isnan(rcond(right)))
+        if (y11 ~= 0)
+            res=[(b1-d1)/y11; 0];
+            display(y11)
+            display(1)
+        else
+            if (y22 ~= 0)
+                res=[0; (b2-d2)/y22];
+                display(2)
+            else
+                display(right)
+            end
+        end
+        
+    else
+        res = linsolve(right, left);
+        display(3)
+    end
 end

@@ -11,7 +11,7 @@ function [N1, N2, D11, D12, D22, iter]=solver(N1, N2, D11, D12, D22, w11, w12, w
     [~, J]=iht(r, k, r);
 
     iter=0;
-    while (iter<max_iter)
+    while (mistake>eps) && (mistake2>eps2) && (iter<max_iter)
         D12=d12_calc(D12, D11, D22, m1, m2, w11, w12, w21, w22, b1, b2, d1, d2, d11, d12, d21, d22, N1, N2, al, A, N, dim, I, J);
         temp=n_calc(D11, D12, D22, w11, w12, w21, w22, d11, d12, d21, d22, b1, b2, d1, d2, h, A, N, dim);
         N1=temp(1); N2=temp(2);    
